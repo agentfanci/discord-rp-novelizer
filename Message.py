@@ -23,6 +23,9 @@ class Message:
     def add_tag(self, tag):
         self.tags.add(tag)
 
+    def __lt__(self, other):
+        return self.date < other.date
+
 
 
 dt = "23-May-19 11:26 AM"

@@ -23,3 +23,20 @@ now, how to break down a csv?
 also what does it do if the content contains newlines that's. an important point but
 
 or a loop of readline(), I think, yes
+
+
+I can read csvs into a bunch of message objects now! Yay!
+So, what now?
+
+- Make Messages sortable by time
+- Make a box for more than one file's worth of messages to go into
+- Make sure the entire box can sortable
+- Figure out what's going wrong with some of the characters & fix it
+- Create Channel class 
+- Create Scene class
+- Put a function in Channel to break their messages into scenes (a hard/cool part!)
+- Make something to sort by tags?
+- Be able to sort by day?
+
+hm, the entire system should maybe be just one file... hmmmmmmm welp
+I can copy paste stuff bc I've gotten too used to java-
