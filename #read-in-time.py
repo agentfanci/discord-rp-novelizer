@@ -3,8 +3,7 @@ import csv
 from Message import Message
 
 
-#class messageReader {
-filename = "Aquiline Estate - calarics-mind.csv"
+filename = "Aquiline Estate - calarics-mind [].csv"
 
 with open(filename, 'r') as csvfile: 
     # creating a csv reader object 
@@ -23,6 +22,5 @@ with open(filename, 'r') as csvfile:
         #m = Message(row.Author, row.Date, row.Content, row.Attatchments, row.Reactions, filename)
         m = Message(row[1], row[2], row[3], row[4], row[5], filename)
         messages.append(m)
+        print(m.channel, m.date, m.content)
     print(str(csvreader.line_num) + " messages read")
-
-#}
