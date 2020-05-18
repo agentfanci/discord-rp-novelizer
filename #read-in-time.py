@@ -1,6 +1,7 @@
 #read-in-time
 import csv
 from Message import Message
+from datetime import datetime
 
 
 filename = "Aquiline Estate - calarics-mind [].csv"
@@ -20,7 +21,12 @@ with open(filename, 'r') as csvfile:
     for row in csvreader: 
         rows.append(row) 
         #m = Message(row.Author, row.Date, row.Content, row.Attatchments, row.Reactions, filename)
-        m = Message(row[1], row[2], row[3], row[4], row[5], filename)
+        #extract channel from filename as made by Discord Chat Exporter
+        chan = filename.split(" ")[3]
+        #extract date as put in by Discord Chat Exporter
+        da =  datetime.strptime(row[2], '%d-%b-%y %I:%M %p')
+
+        m = Message(row[1], da, row[3], row[4], row[5], chan )
         messages.append(m)
         print(m.channel, m.date, m.content)
     print(str(csvreader.line_num) + " messages read")
