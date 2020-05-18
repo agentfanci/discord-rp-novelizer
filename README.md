@@ -2,14 +2,14 @@
 A Python program for taking text files generated from rp servers and organizing them.
 
 __Basic Function Goals__
-  - Be able to sort messages by date, time, author, or channel
+  - Be able to sort messages by date and time or channel
   - Create chronological list of messages, regardless of channel
   
 __More Complex Function Goals__
   - Organize messages by scene
   - Place scenes in correct chronological order even when switching channels or simultaneous
   - Keep simultaneous scenes separate and not interspersed with one another
-  - Create corpuses of particular messages for natural language analysis
+  - Create corpuses of particular messages for natural language analysis- sort by author, time of day, etc
   
 __Future Possibilities__
   - Create a GUI or other interface
