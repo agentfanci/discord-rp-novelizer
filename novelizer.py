@@ -23,7 +23,8 @@ class Novelizer:
             # extracting each data row one by one 
             m = "m"
             #extract channel from filename as made by Discord Chat Exporter
-            chan = filename.split(" ")[3]
+            chan = filename.split(" ")[-2]
+            print(chan)
             for row in csvreader: 
                 
                 #extract date as put in by Discord Chat Exporter
