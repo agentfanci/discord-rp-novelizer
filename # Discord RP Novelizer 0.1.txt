@@ -16,6 +16,7 @@
 
 #oki am getting things as csvs as I type now so
 #...howmst to get them to a program?
+'''
 File_object.readlines() sounds like what I want!
 will return a list of strings, each line is a string! Sounds great
 
@@ -43,7 +44,7 @@ I can copy paste stuff bc I've gotten too used to java-
 
 okay, can do either way, but- anyway. 
 Use "is" for reference equality, so can 
-
+'''
 
 testing code
 dt = "23-May-19 11:26 AM"
