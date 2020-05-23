@@ -6,6 +6,7 @@ class Channel:
     def __init__(self, nam):
         self.title = nam
         self.messages = []
+        self.scenes = []
 
     def add_message(self, mes):
         self.messages.append(mes)
@@ -19,16 +20,37 @@ class Channel:
         #well, a big thing
         scenes = []
         proto = []
-        
-        for m in self.messages:
-            #if last
-                #end current scene, return list of scenes
-            #else: 
-                #space = m.date - next.date
-                #for a beginning: if space < interval, add to current proto-scene
-                #if space > than interval, make new protp-scene & add this, create scene with last prot-scene & put it in the scenes list
-                # all right I think that's what I wanna do, for now at least
-                pass
+        for i in range(len(self.messages)-1):
+            
+             m = self.messages[i]
+             nex = self.messages[i+1]
+             #to look forward or backward...
+             #gonna go with forward so the end is the special case I think- hmm it feels Weird but still
+
+             #add current message to current proto-scene
+             proto.append(m)
+             #figure out how far away the next one is
+             space = m.date - nex.date 
+
+             if space < interval:
+                  #next goes into current proto-scene
+                  #so no need to do more things
+                  pass
+             else:
+                 #if space >= than interval
+                 #create scene with last proto-scene & put it in the scenes list
+                 sce = Scene(proto)
+                 scenes.append(sce)
+                 proto = []
+                 #make a new proto-scene and put it in as the current one, so the next message will go in it
+
+         #handle last- do the scene end stuff
+        m = self.messages[-1]
+        proto.append(m)
+        sce = Scene(proto)
+        scenes.append(sce)
+        return scenes
+        #return list of scenes
 
 
 
