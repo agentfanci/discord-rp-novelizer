@@ -1,6 +1,8 @@
 from datetime import datetime
 from Message import Message
 import csv
+from Channel_Scene import Channel
+from Channel_Scene import Scene 
 
 
 class Novelizer:
@@ -9,6 +11,7 @@ class Novelizer:
         #so we want a couple lists, right
         self.messages = []
         self.channels = []
+        self.scenes = []
         #we can add more later!
     
     def read_from_DCE_csv(self, filename):
@@ -25,12 +28,14 @@ class Novelizer:
             #extract channel from filename as made by Discord Chat Exporter
             chan = filename.split(" ")[-2]
             print(chan)
+            current_channel = Channel(chan)
             for row in csvreader: 
                 
                 #extract date as put in by Discord Chat Exporter
                 da =  datetime.strptime(row[2], '%d-%b-%y %I:%M %p')
                 m = Message(row[1], da, row[3], row[4], row[5], chan )
                 self.messages.append(m)
+                current_channel.add_message(m)
                 #print(m.channel, m.date, m.content)
             
             self.channels.append(chan)
@@ -38,8 +43,16 @@ class Novelizer:
 
     def read_in(self, filename):
         self.read_from_DCE_csv(filename)
-        #alias bc this is the only kind of reading in for the momen
+        #alias bc this is the only kind of reading in for the moment
     
+    def sort_all_scenes(self):
+        for ch in self.channels:
+            sce = ch.make_scenes
+            self.scenes = self.scenes + sce
+    
+
+
+
 
 nov1 = Novelizer()
 

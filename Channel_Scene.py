@@ -21,7 +21,7 @@ class Channel:
         scenes = []
         proto = []
         for i in range(len(self.messages)-1):
-            
+             #won't do the last one! bc range is exclusive of the end value
              m = self.messages[i]
              nex = self.messages[i+1]
              #to look forward or backward...
@@ -49,6 +49,7 @@ class Channel:
         proto.append(m)
         sce = Scene(proto)
         scenes.append(sce)
+        self.scenes = scenes
         return scenes
         #return list of scenes
 
