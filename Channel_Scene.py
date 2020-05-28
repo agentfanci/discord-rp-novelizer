@@ -76,3 +76,15 @@ class Scene:
     
     def __eq__(self, other):
         return self.start < other.start
+
+    def __str__(self):
+        lis = []
+        for m in self.messages:
+            st = m.author + ": " + m.content 
+            lis.append(st)
+        out_st = self.channel + '\n'+'\n'.join(lis)
+        return out_st
+
+    def __repr__(self):
+        st = "Channel: " + self.channel + ", Start: " + self.start
+        return st
