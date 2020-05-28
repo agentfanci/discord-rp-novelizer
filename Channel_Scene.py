@@ -30,7 +30,7 @@ class Channel:
              #add current message to current proto-scene
              proto.append(m)
              #figure out how far away the next one is
-             space = m.date - nex.date 
+             space = nex.date - m.date 
 
              if space < interval:
                   #next goes into current proto-scene
@@ -70,4 +70,9 @@ class Scene:
         #if empty, run through messages & make a set of the authors
         #make the authors instance variable private if i can manage that
         pass
+
+    def __lt__(self, other):
+        return self.start < other.start
     
+    def __eq__(self, other):
+        return self.start < other.start

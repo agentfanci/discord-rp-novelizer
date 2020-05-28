@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import *
 from Message import Message
 import csv
 from Channel_Scene import Channel
@@ -38,17 +38,23 @@ class Novelizer:
                 current_channel.add_message(m)
                 #print(m.channel, m.date, m.content)
             
-            self.channels.append(chan)
+            self.channels.append(current_channel)
             print(str(csvreader.line_num) + " messages read")
 
     def read_in(self, filename):
         self.read_from_DCE_csv(filename)
         #alias bc this is the only kind of reading in for the moment
     
-    def sort_all_scenes(self):
+    def sort_all_scenes(self, time):
+        enes = []
         for ch in self.channels:
-            sce = ch.make_scenes
-            self.scenes = self.scenes + sce
+            sce = ch.make_scenes(time)
+            print(len(sce))
+            enes = enes + sce
+        enes.sort()
+        self.scenes = enes
+        return enes
+
     
 
 
@@ -59,4 +65,9 @@ nov1 = Novelizer()
 nov1.read_from_DCE_csv("Aquiline Estate - calarics-mind [].csv")
 
 nov1.read_in(r"C:\Users\A\Documents\Discord RP\Estate CSVs\Airships\Aquiline Estate - alex’s-airship [505579394828468224].csv")
+t = timedelta(hours = 0.5)
+nov1.sort_all_scenes(t)
 
+print(len(nov1.scenes))
+for s in nov1.scenes:
+    print(s.channel)
