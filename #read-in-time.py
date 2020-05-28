@@ -30,3 +30,16 @@ with open(filename, 'r') as csvfile:
         messages.append(m)
         print(m.channel, m.date, m.content)
     print(str(csvreader.line_num) + " messages read")
+
+
+#testing code
+dt = "23-May-19 11:26 AM"
+date = datetime.strptime(dt, '%d-%b-%y %I:%M %p')
+print(date)
+
+fil ="Aquiline Estate - tetsu’s-airship [505976426995122179].csv"
+channel = fil.split(" ")[3]
+print(channel)
+fil = "Aquiline Estate - agents-airship [].csv"
+channel = fil.split(" ")[3]
+print(channel)
