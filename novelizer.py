@@ -1,9 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
-#from Message import Message
 import csv
-#from Channel_Scene import Channel
-#from Channel_Scene import Scene 
+
 
 
 class Novelizer:
@@ -22,7 +20,6 @@ class Novelizer:
       
             # extracting field names through first row 
             fields = next(csvreader) 
-            print(fields)
 
             # extracting each data row one by one 
             m = "m"
@@ -34,8 +31,11 @@ class Novelizer:
                 
                 #extract date as put in by Discord Chat Exporter
                 da =  datetime.strptime(row[2], '%d-%b-%y %I:%M %p')
+                #make message object
                 m = Message(row[1], da, row[3], row[4], row[5], chan )
+                #add to novelizer messages
                 self.messages.append(m)
+                #and to its channel
                 current_channel.add_message(m)
                 #print(m.channel, m.date, m.content)
             
@@ -50,20 +50,21 @@ class Novelizer:
     def sort_all_scenes(self, time):
         enes = []
         for ch in self.channels:
-            sce = ch.make_scenes(time)
-            print(len(sce))
-            enes = enes + sce
-        enes.sort()
-        self.scenes = enes
-        return enes
+            sce = ch.make_scenes(time) #ask each channel to split iteslf into scenes
+            enes = enes + sce #make a master list of all scenes from all channels 
+        enes.sort() #sort scenes (they sort by start time)
+        self.scenes = enes #apply the list to the scenes list
+        return enes #and also return it
 
     def novelize(self, min_time_between_scenes, output_file):
-        t = min_time_between_scenes
-        fil = open(output_file, "w", encoding='utf-8')
-        self.sort_all_scenes(t)
+        t = min_time_between_scenes 
+        fil = open(output_file, "w", encoding='utf-8') #create or open requested file
+        self.sort_all_scenes(t) 
         for s in self.scenes:
-            print(s, file = fil)
-            print("\n", file = fil)
+            print(s, file = fil) #print scenes in order to file
+            print("\n") #add line between scenes
+        return fil
+
 
 
 class Channel: 
@@ -79,8 +80,7 @@ class Channel:
     def make_scenes(self, interval):
         #interval is the time interval to split scenes on! 
         #so it can be customized a bit for diff servers n such
-        #should be a timedelta object- will take some doing 
-        # should probs make a helper function to do that for people
+        #should be a timedelta object
         #oh boy this is the big thing!
         #well, a big thing
         scenes = []
@@ -137,21 +137,21 @@ class Scene:
         pass
 
     def __lt__(self, other):
-        return self.start < other.start
+        return self.start < other.start #sorts by start time
     
     def __eq__(self, other):
-        return self.start < other.start
+        return self.start == other.start
 
     def __str__(self):
         lis = []
         for m in self.messages:
-            st = m.author + ": " + m.content 
+            st = m.author + ": " + m.content  #make each message into author: content
             lis.append(st)
-        out_st = self.channel + '\n'+'\n'.join(lis)
+        out_st = self.channel + '\n'+'\n'.join(lis) #make a string with a newline between each message
         return out_st
 
     def __repr__(self):
-        st = "Channel: " + self.channel + ", Start: " + self.start
+        st = "Channel: " + self.channel + ", Start: " + self.start #identify scenes by start time and channel- no other scene should have both of them the same. 
         return st
 
 class Message:
