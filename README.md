@@ -3,7 +3,7 @@ A Python program for taking text files generated from rp servers and organizing 
 
 __How To Use__
 1. Obtain CSV files of your desired channels with [DiscordChatExporter by Tyrrz](https://github.com/Tyrrrz/DiscordChatExporter).
-2. Create a Novelizer with your preferred Python environment.
+2. Download Novelizer.py and import it into a file with your preferred Python editor. Create a Novelizer object. 
 3. read_in each CSV file with read_in(r"your file path"). This will print the channel name and number of messages.
 4. Define a timedelta object from the datetime module to be your scene separation threshold. A scene will end if there is a gap of this length or greater between messages. Half an hour is a decent place to start. 
 5. Use novelize with your timedelta object and a filename to produce. 

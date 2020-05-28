@@ -1,5 +1,5 @@
 
-from Novelizer import *
+from Novelizer import Novelizer
 from datetime import timedelta, datetime
 #testing things
 
@@ -11,8 +11,8 @@ nov1.read_from_DCE_csv("Aquiline Estate - calarics-mind [].csv")
 #nov1.read_in(r"C:\Users\A\Documents\Discord RP\Estate CSVs\Main House\Aquiline Estate - terrace [485906652902719508].csv")
 
 #nov1.read_in(r"C:\Users\A\Documents\Discord RP\Estate CSVs\Airships\Aquiline Estate - alex’s-airship [505579394828468224].csv")
-#t = timedelta(hours = 1)
-#sc = nov1.sort_all_scenes(t)
+t = timedelta(hours = 1)
+nov1.novelize(t, "cal mind test.txt")
 
 #print(len(nov1.scenes))
 #print(nov1.scenes[-1])

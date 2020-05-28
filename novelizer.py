@@ -61,7 +61,9 @@ class Novelizer:
         fil = open(output_file, "w", encoding='utf-8') #create or open requested file
         self.sort_all_scenes(t) 
         for s in self.scenes:
-            print(s, file = fil) #print scenes in order
+            print(s, file = fil) #print scenes in order to file
+            print("\n") #add line between scenes
+        return fil
 
 
 
