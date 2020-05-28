@@ -57,3 +57,21 @@ print(channel)
 fil = "Aquiline Estate - agents-airship [].csv"
 channel = fil.split(" ")[3]
 print(channel)
+
+The Goals- How did I do?
+
+__Basic Function Goals__
+  - Be able to sort messages by date and time or channel - possible, but not primary
+  - Create chronological list of messages, regardless of channel - also possible, no quick function though
+  
+__More Complex Function Goals__
+  - Organize messages by scene - Done!
+  - Place scenes in correct chronological order even when switching channels or simultaneous - Done!
+  - Keep simultaneous scenes separate and not interspersed with one another - Done!
+  - Create corpuses of particular messages for natural language analysis- sort by author, time of day, etc - Not done, but there is groundwork for it
+
+  
+__Future Possibilities__ None of these are done
+  - Create a GUI or other interface
+  - Authorship and other analysis to determine characters in scenes
+  - Expand capabilities past Discord exclusively
