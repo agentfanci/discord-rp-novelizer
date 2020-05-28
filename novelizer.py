@@ -57,24 +57,17 @@ class Novelizer:
         self.scenes = enes
         return enes
 
+    def novelize(self, min_time_between_scenes, output_file):
+        t = min_time_between_scenes
+        fil = open(output_file, "w", encoding='utf-8')
+        self.sort_all_scenes(t)
+        for s in self.scenes:
+            print(s, file = fil)
+            print("\n", file = fil)
+
+
+
     
 
 
-
-
-nov1 = Novelizer()
-
-nov1.read_from_DCE_csv("Aquiline Estate - calarics-mind [].csv")
-
-nov1.read_in(r"C:\Users\A\Documents\Discord RP\Estate CSVs\Airships\Aquiline Estate - alex’s-airship [505579394828468224].csv")
-t = timedelta(hours = 1)
-sc = nov1.sort_all_scenes(t)
-
-print(len(nov1.scenes))
-print(nov1.scenes[-1])
-#print(sc[0])
-test1 = open("estate_test_1.txt", "w", encoding='utf-8')
-for s in nov1.scenes:
-    print(s.channel)
-    print(s, file=test1)
 
