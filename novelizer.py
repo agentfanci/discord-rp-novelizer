@@ -1,6 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
 import csv
+import os
 
 
 
@@ -14,6 +15,7 @@ class Novelizer:
         #we can add more later!
     
     def read_from_DCE_csv(self, filename):
+        #filename variable should actually be a file path unless your novelizer is in the same directory
         with open(filename, 'r', encoding='utf-8') as csvfile: 
             # creating a csv reader object 
             csvreader = csv.reader(csvfile) 
@@ -62,8 +64,20 @@ class Novelizer:
         self.sort_all_scenes(t) 
         for s in self.scenes:
             print(s, file = fil) #print scenes in order to file
-            print("\n") #add line between scenes
+            #print("\n", file = fil) #add line between scenes
+            print("------------", file = fil) #add divider between scenes
         return fil
+
+    def read_from_folder_of_DCE_csv(self, folderpath):
+        
+        #code modified from https://realpython.com/working-with-files-in-python/#traversing-directories-and-processing-files
+        for dirpath, dirnames, files in os.walk(folderpath):
+            print(f'Reading directory: {dirpath}')
+
+            for file_name in files:
+                filepath = os.path.join(dirpath, file_name)
+                self.read_from_DCE_csv(filepath)
+    
 
 
 

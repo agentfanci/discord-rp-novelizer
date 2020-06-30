@@ -24,6 +24,7 @@ __Future Goals__
   - Automatic time between estimation
   - Easier time definition- create timedelta object within functions
   - More failproofing
+  - Read a folder full of files
   
 __Future Possibilities__
   - Create a GUI or other interface
